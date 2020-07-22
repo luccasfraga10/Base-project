@@ -18,17 +18,17 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:ci": "react-scripts test --coverage --watchAll false"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/modules/**/pages/*.js",
-      "src/modules/**/components/*.js",
+      "src/modules/**/components/**/*.js",
       "src/modules/**/utils/*.js",
-      "src/utils/*.js"
+      "src/modules/**/selectors/*.js"
     ],
     "coverageThreshold": {
       "src/modules": {
@@ -54,7 +54,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "cross-env CI=true yarn test --bail --findRelatedTests",
+      "pre-push": "cross-env CI=true yarn test --coverage --watchAll false",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
